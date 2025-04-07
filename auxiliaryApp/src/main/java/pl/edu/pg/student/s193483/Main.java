@@ -21,7 +21,7 @@ public class Main {
         JPanel panel = new JPanel();
 
         JLabel label = new JLabel("Enter password:");
-        JTextField textField = new JTextField(20);
+        JPasswordField textField = new JPasswordField(20);
 
         JButton generateButton = new JButton("Generate");
         JButton savePublicButton = new JButton("Save public key");
