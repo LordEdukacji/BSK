@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Console;
+import java.io.FileOutputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -34,13 +35,12 @@ public class Main {
         generateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent a) {
-                System.out.println(textField.getText());
-
                 try {
                     generator.generateKeys(textField.getText());
 
                     savePublicButton.setEnabled(true);
                     savePrivateButton.setEnabled(true);
+                    generateButton.setEnabled(false);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -52,7 +52,30 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 savePublicButton.setEnabled(false);
                 savePrivateButton.setEnabled(false);
+                generateButton.setEnabled(true);
                 textField.setText("");
+            }
+        });
+
+        savePublicButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try (FileOutputStream fileOutputStream = new FileOutputStream("public.txt")) {
+                    fileOutputStream.write(generator.getPublicKeyBytes());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+        savePrivateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try (FileOutputStream fileOutputStream = new FileOutputStream("private.txt")) {
+                    fileOutputStream.write(generator.getPrivateKeyBytes());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -67,7 +90,5 @@ public class Main {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-
     }
 }
