@@ -23,8 +23,10 @@ public class Main {
         JTextField textField = new JTextField(20);
 
         JButton generateButton = new JButton("Generate");
-        JButton saveButton = new JButton("Save keys to files");
-        saveButton.setEnabled(false);
+        JButton savePublicButton = new JButton("Save public key");
+        JButton savePrivateButton = new JButton("Save private key");
+        savePublicButton.setEnabled(false);
+        savePrivateButton.setEnabled(false);
         JButton restartButton = new JButton("Restart");
 
         Generator generator = new Generator();
@@ -36,13 +38,9 @@ public class Main {
 
                 try {
                     generator.generateKeys(textField.getText());
-                    System.out.println(generator.publicKey);
-                    System.out.println(generator.privateKey);
-                    System.out.println(Arrays.toString(generator.encryptedPrivateKey));
-                    System.out.println(Arrays.toString(generator.iv));
-                    System.out.println(Arrays.toString(generator.salt));
 
-                    saveButton.setEnabled(true);
+                    savePublicButton.setEnabled(true);
+                    savePrivateButton.setEnabled(true);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -52,7 +50,8 @@ public class Main {
         restartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                saveButton.setEnabled(false);
+                savePublicButton.setEnabled(false);
+                savePrivateButton.setEnabled(false);
                 textField.setText("");
             }
         });
@@ -60,7 +59,8 @@ public class Main {
         panel.add(label);
         panel.add(textField);
         panel.add(generateButton);
-        panel.add(saveButton);
+        panel.add(savePublicButton);
+        panel.add(savePrivateButton);
         panel.add(restartButton);
 
         frame.add(panel);

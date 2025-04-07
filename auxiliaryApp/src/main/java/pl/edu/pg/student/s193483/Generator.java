@@ -7,6 +7,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.*;
@@ -15,11 +16,25 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
 public class Generator {
-    public PublicKey publicKey;
-    public PrivateKey privateKey;
-    public byte[] encryptedPrivateKey;
-    public byte[] iv;
-    public byte[] salt;
+    private PublicKey publicKey;
+    private byte[] iv;
+    private byte[] salt;
+    private byte[] encryptedPrivateKey;
+
+    public byte[] getPublicKeyBytes() {
+        return publicKey.getEncoded();
+    }
+
+    public byte[] getPrivateKeyBytes() {
+        byte[] byteRepresentation = new byte[iv.length + salt.length + encryptedPrivateKey.length];
+        ByteBuffer buffer = ByteBuffer.wrap(byteRepresentation);
+        buffer.put(iv);
+        buffer.put(salt);
+        buffer.put(encryptedPrivateKey);
+        byteRepresentation = buffer.array();
+
+        return byteRepresentation;
+    }
 
     public void generateKeys(String pin) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException {
         SecureRandom secureRandom = new SecureRandom();
@@ -32,7 +47,7 @@ public class Generator {
 
         // save the pair of RSA keys
         publicKey = rsaPair.getPublic();
-        privateKey = rsaPair.getPrivate();
+        PrivateKey privateKey = rsaPair.getPrivate();
 
         // generate the salt
         salt = new byte[16];
