@@ -40,6 +40,7 @@ public class Main {
                     System.out.println(generator.privateKey);
                     System.out.println(Arrays.toString(generator.encryptedPrivateKey));
                     System.out.println(Arrays.toString(generator.iv));
+                    System.out.println(Arrays.toString(generator.salt));
 
                     saveButton.setEnabled(true);
                 } catch (Exception e) {
@@ -53,7 +54,6 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 saveButton.setEnabled(false);
                 textField.setText("");
-
             }
         });
 
