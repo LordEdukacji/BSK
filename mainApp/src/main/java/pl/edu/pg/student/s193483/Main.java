@@ -2,21 +2,8 @@ package pl.edu.pg.student.s193483;
 
 import pl.edu.pg.student.s193483.ActionListeners.*;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.smartcardio.Card;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.security.*;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -55,8 +42,7 @@ public class Main {
 
         mainPanel.add(signButton);
         mainPanel.add(verifyButton);
-
-        // remove later
+        
         verifyPanel.add(choosePublicButton);
         verifyPanel.add(choosePDFButton);
         verifyPanel.add(returnButton);

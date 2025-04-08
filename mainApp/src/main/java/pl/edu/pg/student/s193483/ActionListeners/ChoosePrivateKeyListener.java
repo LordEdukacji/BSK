@@ -41,7 +41,6 @@ public class ChoosePrivateKeyListener implements ActionListener {
 
                 byte[] bytes = fileInputStream.readAllBytes();
                 PrivateKey privateKey = KeyExtractor.extractPrivateKey(bytes, password);
-
                 System.out.println(privateKey);
             } catch (FileNotFoundException ex) {
                 throw new RuntimeException(ex);
