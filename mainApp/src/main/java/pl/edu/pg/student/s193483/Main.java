@@ -3,8 +3,10 @@ package pl.edu.pg.student.s193483;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.smartcardio.Card;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -18,16 +20,39 @@ public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Main app");
         JPanel mainPanel = new JPanel();
+        JPanel signPanel = new JPanel();
+        JPanel verifyPanel = new JPanel();
+
+        CardLayout cardLayout = new CardLayout();
+        JPanel cards = new JPanel(cardLayout);
+        cards.add(mainPanel, "MAIN");
+        cards.add(signPanel, "SIGN");
+        cards.add(verifyPanel, "VERIFY");
 
         JButton signButton = new JButton("Sign a PDF");
         JButton verifyButton = new JButton("Verify a signature");
-        signButton.setEnabled(false);
-        verifyButton.setEnabled(false);
+
+        signButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards, "SIGN");
+            }
+        });
+
+        verifyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards, "VERIFY");
+            }
+        });
 
         // move functionality somewhere else later
         JButton choosePublicButton = new JButton("(temporary) Choose file with public key");
         JButton choosePrivateButton = new JButton("(temporary) Choose file with private key");
         JButton choosePDFButton = new JButton("(temporary) Choose PDF file");
+        JButton choosePDFButton2 = new JButton("(temporary) Choose PDF file");
+        JButton returnButton = new JButton("Return");
+        JButton returnButton2 = new JButton("Return");
 
         choosePublicButton.addActionListener(new ActionListener() {
             @Override
@@ -107,7 +132,7 @@ public class Main {
             }
         });
 
-        choosePDFButton.addActionListener(new ActionListener() {
+        ActionListener choosePDFListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
@@ -124,17 +149,32 @@ public class Main {
                     System.out.println(fullPath);
                 }
             }
-        });
+        };
+
+        ActionListener returnListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards, "MAIN");
+            }
+        };
+
+        choosePDFButton.addActionListener(choosePDFListener);
+        choosePDFButton2.addActionListener(choosePDFListener);
+        returnButton.addActionListener(returnListener);
+        returnButton2.addActionListener(returnListener);
 
         mainPanel.add(signButton);
         mainPanel.add(verifyButton);
 
         // remove later
-        mainPanel.add(choosePublicButton);
-        mainPanel.add(choosePrivateButton);
-        mainPanel.add(choosePDFButton);
+        verifyPanel.add(choosePublicButton);
+        verifyPanel.add(choosePDFButton);
+        verifyPanel.add(returnButton);
+        signPanel.add(choosePrivateButton);
+        signPanel.add(choosePDFButton2);
+        signPanel.add(returnButton2);
 
-        frame.add(mainPanel);
+        frame.add(cards);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
