@@ -4,9 +4,12 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Console;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.security.InvalidAlgorithmParameterException;
@@ -58,27 +61,8 @@ public class Main {
             }
         });
 
-        savePublicButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try (FileOutputStream fileOutputStream = new FileOutputStream("public.txt")) {
-                    fileOutputStream.write(generator.getPublicKeyBytes());
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-
-        savePrivateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try (FileOutputStream fileOutputStream = new FileOutputStream("private.txt")) {
-                    fileOutputStream.write(generator.getPrivateKeyBytes());
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+        savePublicButton.addActionListener(new SaveButtonListener(generator, SaveButtonListener.SaveButtonType.SAVE_PUBLIC_KEY));
+        savePrivateButton.addActionListener(new SaveButtonListener(generator, SaveButtonListener.SaveButtonType.SAVE_PRIVATE_KEY));
 
         panel.add(label);
         panel.add(textField);
