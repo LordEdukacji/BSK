@@ -4,16 +4,9 @@ import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.*;
-import java.security.spec.EncodedKeySpec;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
 
 public class Generator {
     private PublicKey publicKey;
@@ -42,7 +35,6 @@ public class Generator {
         // generate a pair of RSA keys
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(4096);
-
         KeyPair rsaPair = keyPairGenerator.generateKeyPair();
 
         // save the pair of RSA keys
@@ -60,7 +52,6 @@ public class Generator {
 
         // generate the IV
         iv = new byte[16];
-
         secureRandom.nextBytes(iv);
 
         // encrypt the private key with AES
