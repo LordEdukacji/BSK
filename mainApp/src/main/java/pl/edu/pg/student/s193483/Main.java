@@ -27,6 +27,7 @@ public class Main {
         // move functionality somewhere else later
         JButton choosePublicButton = new JButton("(temporary) Choose file with public key");
         JButton choosePrivateButton = new JButton("(temporary) Choose file with private key");
+        JButton choosePDFButton = new JButton("(temporary) Choose PDF file");
 
         choosePublicButton.addActionListener(new ActionListener() {
             @Override
@@ -106,12 +107,32 @@ public class Main {
             }
         });
 
+        choosePDFButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("PDF Files", "pdf");
+                fileChooser.addChoosableFileFilter(fileFilter);
+                fileChooser.setAcceptAllFileFilterUsed(false);
+
+                int openReturn = fileChooser.showOpenDialog(null);
+
+                if (openReturn == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    String fullPath = file.getAbsolutePath();
+
+                    System.out.println(fullPath);
+                }
+            }
+        });
+
         mainPanel.add(signButton);
         mainPanel.add(verifyButton);
 
         // remove later
         mainPanel.add(choosePublicButton);
         mainPanel.add(choosePrivateButton);
+        mainPanel.add(choosePDFButton);
 
         frame.add(mainPanel);
         frame.pack();
