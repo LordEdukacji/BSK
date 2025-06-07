@@ -8,16 +8,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public class SaveButtonListener implements ActionListener {
-    private Generator generator;
-    private SaveButtonType type;
+    private final Generator generator;
+    private final SaveButtonType type;
+    private final JLabel status;
 
     public enum SaveButtonType {
         SAVE_PRIVATE_KEY, SAVE_PUBLIC_KEY
     }
 
-    public SaveButtonListener(Generator generator, SaveButtonType type) {
+    public SaveButtonListener(Generator generator, SaveButtonType type, JLabel status) {
         this.generator = generator;
         this.type = type;
+        this.status = status;
     }
 
     @Override
@@ -50,16 +52,17 @@ public class SaveButtonListener implements ActionListener {
             try (FileOutputStream fileOutputStream = new FileOutputStream(fullPath)) {
                 if (this.type == SaveButtonType.SAVE_PUBLIC_KEY) {
                     fileOutputStream.write(generator.getPublicKeyBytes());
+                    status.setText("Public key saved!");
                 } else if (this.type == SaveButtonType.SAVE_PRIVATE_KEY) {
                     fileOutputStream.write(generator.getPrivateKeyBytes());
+                    status.setText("Private key saved!");
                 } else {
                     throw new IllegalArgumentException("Unknown button type");
                 }
 
             } catch (Exception ex) {
-                System.out.println(ex);
+                status.setText(ex.getMessage());
             }
-
         }
     }
 }
