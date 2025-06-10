@@ -7,10 +7,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 
+/**
+ * @class SaveButtonListener
+ * @brief Handles saving a key upon clicking the save button
+ */
 public class SaveButtonListener implements ActionListener {
-    private final Generator generator;
-    private final SaveButtonType type;
-    private final JLabel status;
+    private final Generator generator;  /** Key pair generator */
+    private final SaveButtonType type;  /** Which key to save - public or private */
+    private final JLabel status;        /** Reference to the app's status bar */
 
     public enum SaveButtonType {
         SAVE_PRIVATE_KEY, SAVE_PUBLIC_KEY
@@ -25,7 +29,7 @@ public class SaveButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Text Files", "txt");
+        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Key Files", "key");
         fileChooser.addChoosableFileFilter(fileFilter);
         fileChooser.setAcceptAllFileFilterUsed(false);
 
@@ -35,8 +39,8 @@ public class SaveButtonListener implements ActionListener {
             File file = fileChooser.getSelectedFile();
             String fullPath = file.getAbsolutePath();
 
-            if (!fullPath.endsWith(".txt")) {
-                fullPath += ".txt";
+            if (!fullPath.endsWith(".key")) {
+                fullPath += ".key";
             }
 
             if (file.exists()) {

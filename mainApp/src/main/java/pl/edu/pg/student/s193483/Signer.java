@@ -12,12 +12,10 @@ import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
-import org.bouncycastle.x509.X509V3CertificateGenerator;
-
-import javax.security.auth.x500.X500Principal;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,52 +29,88 @@ import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPrivateCrtKey;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Date;
+import java.util.concurrent.CancellationException;
 
 public class Signer extends PdfHandler {
-    public PrivateKey privateKey;
+    public final UsbHolder usbHolder;
+    public String password;
 
-    public void signPDF() {
+    public Signer(UsbHolder usbHolder) {
+        super();
+        this.usbHolder = usbHolder;
+    }
+
+    public String signPDF() throws Exception {
         try {
-            PdfReader pdfReader = new PdfReader(pdfFile.getAbsolutePath());
+            if (pdfFile == null) throw new IllegalArgumentException("PDF file required!");
 
-            PrivateKeySignature privateKeySignature = new PrivateKeySignature(privateKey, "SHA256", null);
+            PrivateKey privateKey = KeyExtractor.extractPrivateKey(usbHolder.privateKeyBytes, password);
+            if (privateKey == null) throw new IllegalArgumentException("Private key required!");
 
-            FileOutputStream outputStream = new FileOutputStream("signed.pdf");
-            PdfStamper stamper = PdfStamper.createSignature(pdfReader, outputStream, '\0');
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("PDF Files", "pdf");
+            fileChooser.addChoosableFileFilter(fileFilter);
+            fileChooser.setAcceptAllFileFilterUsed(false);
 
-            PdfSignatureAppearance signatureAppearance = stamper.getSignatureAppearance();
+            int saveReturn = fileChooser.showSaveDialog(null);
 
-            RSAPrivateCrtKey privk = (RSAPrivateCrtKey) privateKey;
-            RSAPublicKeySpec pubSpec = new RSAPublicKeySpec(privk.getModulus(), privk.getPublicExponent());
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PublicKey publicKey = keyFactory.generatePublic(pubSpec);
+            if (saveReturn == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                String fullPath = file.getAbsolutePath();
 
-            JcaX509v3CertificateBuilder certGen = new JcaX509v3CertificateBuilder(
-                    new X500Name("CN=issuer"),
-                    BigInteger.ZERO,
-                    new Date(System.currentTimeMillis()),
-                    new Date(System.currentTimeMillis() + 1000L * 24 * 60 * 60 * 1000),
-                    new X500Name("CN=subject"),
-                    publicKey
-            );
-            X509CertificateHolder certHolder = certGen.build(new JcaContentSignerBuilder("SHA256WithRSA").build(privateKey));
+                if (!fullPath.endsWith(".pdf")) {
+                    fullPath += ".pdf";
+                }
 
-            X509Certificate certificate = new JcaX509CertificateConverter().getCertificate(certHolder);
+                if (file.exists()) {
+                    int confirmation = JOptionPane.showConfirmDialog(null,
+                            "This file already exists. Do you want to overwrite it?",
+                            "Confirm",
+                            JOptionPane.YES_NO_OPTION);
+                    if (confirmation != JOptionPane.OK_OPTION) {
+                        throw new CancellationException("Signing process cancelled");
+                    }
+                }
 
-            ExternalDigest digest = new BouncyCastleDigest();
+                PdfReader pdfReader = new PdfReader(pdfFile.getAbsolutePath());
 
-            MakeSignature.signDetached(signatureAppearance, digest, privateKeySignature, new Certificate[] {certificate}, null, null, null, 0, MakeSignature.CryptoStandard.CMS);
+                PrivateKeySignature privateKeySignature = new PrivateKeySignature(privateKey, "SHA256", null);
 
-            stamper.close();
+                FileOutputStream outputStream = new FileOutputStream(fullPath);
+                PdfStamper stamper = PdfStamper.createSignature(pdfReader, outputStream, '\0');
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (DocumentException e) {
-            throw new RuntimeException(e);
-        } catch (GeneralSecurityException e) {
-            throw new RuntimeException(e);
-        } catch (OperatorCreationException e) {
-            throw new RuntimeException(e);
+                PdfSignatureAppearance signatureAppearance = stamper.getSignatureAppearance();
+
+                RSAPrivateCrtKey rsaPrivateCrtKey = (RSAPrivateCrtKey) privateKey;
+                RSAPublicKeySpec pubSpec = new RSAPublicKeySpec(rsaPrivateCrtKey.getModulus(), rsaPrivateCrtKey.getPublicExponent());
+                KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+                PublicKey publicKey = keyFactory.generatePublic(pubSpec);
+
+                JcaX509v3CertificateBuilder certGen = new JcaX509v3CertificateBuilder(
+                        new X500Name("CN=issuer"),
+                        BigInteger.ZERO,
+                        new Date(System.currentTimeMillis()),
+                        new Date(System.currentTimeMillis() + 1000L * 24 * 60 * 60 * 1000), // 1000 days
+                        new X500Name("CN=subject"),
+                        publicKey
+                );
+                X509CertificateHolder certHolder = certGen.build(new JcaContentSignerBuilder("SHA256WithRSA").build(privateKey));
+
+                X509Certificate certificate = new JcaX509CertificateConverter().getCertificate(certHolder);
+
+                ExternalDigest digest = new BouncyCastleDigest();
+
+                MakeSignature.signDetached(signatureAppearance, digest, privateKeySignature, new Certificate[] {certificate}, null, null, null, 0, MakeSignature.CryptoStandard.CMS);
+
+                stamper.close();
+
+                return fullPath;
+            }
+
+            throw new Exception("Something else went wrong");
+
+        } catch (IOException | DocumentException | GeneralSecurityException | OperatorCreationException e) {
+            throw new Exception(e);
         }
     }
 }

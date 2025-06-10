@@ -17,15 +17,17 @@ import java.security.spec.InvalidKeySpecException;
 
 public class ChoosePublicKeyListener implements ActionListener {
     private final Verifier verifier;
+    private final JLabel status;
 
-    public ChoosePublicKeyListener(Verifier verifier) {
+    public ChoosePublicKeyListener(Verifier verifier, JLabel status) {
         this.verifier = verifier;
+        this.status = status;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Text Files", "txt");
+        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Key Files", "key");
         fileChooser.addChoosableFileFilter(fileFilter);
         fileChooser.setAcceptAllFileFilterUsed(false);
 
@@ -37,18 +39,12 @@ public class ChoosePublicKeyListener implements ActionListener {
 
             try (FileInputStream fileInputStream = new FileInputStream(fullPath)) {
                 byte[] bytes = fileInputStream.readAllBytes();
-                PublicKey publicKey = KeyExtractor.extractPublicKey(bytes);
 
-                verifier.publicKey = publicKey;
-                System.out.println(publicKey);
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (NoSuchAlgorithmException ex) {
-                throw new RuntimeException(ex);
-            } catch (InvalidKeySpecException ex) {
-                throw new RuntimeException(ex);
+                verifier.publicKey = KeyExtractor.extractPublicKey(bytes);
+
+                status.setText("Public key chosen!");
+            } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                status.setText("Not a valid public key file!");
             }
         }
     }

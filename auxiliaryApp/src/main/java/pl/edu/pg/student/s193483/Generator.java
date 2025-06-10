@@ -8,16 +8,29 @@ import java.nio.ByteBuffer;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 
+/**
+ * @class Generator
+ * @brief Generates the RSA key pair.
+ * @details The public key is available directly in its byte form, while the private key is secured using a PIN provided during the generation process.
+ */
 public class Generator {
-    private PublicKey publicKey;
-    private byte[] iv;
-    private byte[] salt;
-    private byte[] encryptedPrivateKey;
+    private PublicKey publicKey;        /** The generated public key */
+    private byte[] iv;                  /** The initialization vector used for encrypting the private key*/
+    private byte[] salt;                /** The salt used for encrypting the private key */
+    private byte[] encryptedPrivateKey; /** The encrypted private key*/
 
+    /**
+     * @brief Provides the byte representation of the public key.
+     * @return Byte array with the public key.
+     */
     public byte[] getPublicKeyBytes() {
         return publicKey.getEncoded();
     }
 
+    /**
+     * @brief Provides the byte representation of the IV, salt and private key.
+     * @return Byte array of the IV, salt and private key.
+     */
     public byte[] getPrivateKeyBytes() {
         byte[] byteRepresentation = new byte[iv.length + salt.length + encryptedPrivateKey.length];
         ByteBuffer buffer = ByteBuffer.wrap(byteRepresentation);
@@ -29,6 +42,10 @@ public class Generator {
         return byteRepresentation;
     }
 
+    /**
+     * @brief Generates a pair of keys and saves them in 
+     * @param pin PIN used for securing the private key.
+     */
     public void generateKeys(String pin) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException {
         SecureRandom secureRandom = new SecureRandom();
 

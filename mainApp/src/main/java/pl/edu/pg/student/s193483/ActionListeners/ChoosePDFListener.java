@@ -10,9 +10,11 @@ import java.io.File;
 
 public class ChoosePDFListener implements ActionListener {
     private final PdfHandler pdfHandler;
+    private JLabel status;
 
-    public ChoosePDFListener(PdfHandler pdfHandler) {
+    public ChoosePDFListener(PdfHandler pdfHandler, JLabel status) {
         this.pdfHandler = pdfHandler;
+        this.status = status;
     }
 
     @Override
@@ -25,10 +27,9 @@ public class ChoosePDFListener implements ActionListener {
         int openReturn = fileChooser.showOpenDialog(null);
 
         if (openReturn == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            String fullPath = file.getAbsolutePath();
+            pdfHandler.pdfFile = fileChooser.getSelectedFile();
 
-            pdfHandler.pdfFile = file;
+            status.setText("PDF file chosen!");
         }
     }
 }
