@@ -15,17 +15,32 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 
+/**
+ * @class ChoosePublicKeyListener
+ * @brief Listener for the button for choosing a public key
+ */
 public class ChoosePublicKeyListener implements ActionListener {
-    private final Verifier verifier;
-    private final JLabel status;
+    private final Verifier verifier;    //!< Signature verifier
+    private final JLabel status;        //!< Status bar
 
+    /**
+     * @brief Default constructor
+     * @param verifier Signature verifier
+     * @param status Status bar
+     */
     public ChoosePublicKeyListener(Verifier verifier, JLabel status) {
         this.verifier = verifier;
         this.status = status;
     }
 
+    /**
+     * @brief Actions to be performed upon clicking the choose public key button
+     * @details Opens a file chooser and attempts to read the public key at the specified location
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // open file chooser
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Key Files", "key");
         fileChooser.addChoosableFileFilter(fileFilter);
@@ -37,9 +52,11 @@ public class ChoosePublicKeyListener implements ActionListener {
             File file = fileChooser.getSelectedFile();
             String fullPath = file.getAbsolutePath();
 
+            // read the bytes
             try (FileInputStream fileInputStream = new FileInputStream(fullPath)) {
                 byte[] bytes = fileInputStream.readAllBytes();
 
+                // extract the key and save it in the verifier
                 verifier.publicKey = KeyExtractor.extractPublicKey(bytes);
 
                 status.setText("Public key chosen!");

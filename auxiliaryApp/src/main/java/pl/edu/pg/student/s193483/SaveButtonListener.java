@@ -12,27 +12,47 @@ import java.io.FileOutputStream;
  * @brief Handles saving a key upon clicking the save button
  */
 public class SaveButtonListener implements ActionListener {
-    private final Generator generator;  /** Key pair generator */
-    private final SaveButtonType type;  /** Which key to save - public or private */
-    private final JLabel status;        /** Reference to the app's status bar */
+    private final Generator generator;  //!< Key pair generator
+    private final SaveButtonType type;  //!< Which key to save - public or private
+    private final JLabel status;        //!< Reference to the app's status bar
 
+    /**
+     * @enum SaveButtonType
+     * @brief Represents which type of key this button saves
+     */
     public enum SaveButtonType {
-        SAVE_PRIVATE_KEY, SAVE_PUBLIC_KEY
+        SAVE_PRIVATE_KEY,   //!< Saves the private key
+        SAVE_PUBLIC_KEY     //!< Saves the public key
     }
 
+    /**
+     * @brief default constructor
+     * @param generator the key generator
+     * @param type private key of public key
+     * @param status reference to the label for displaying status information
+     */
     public SaveButtonListener(Generator generator, SaveButtonType type, JLabel status) {
         this.generator = generator;
         this.type = type;
         this.status = status;
     }
 
+    /**
+     * @brief The sequence of actions to be carried upon clicking the save button
+     * @details Opens a file chooser and saves the appropriate key to the correct location
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // create the file chooser
         JFileChooser fileChooser = new JFileChooser();
+
+        // .key filter
         FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Key Files", "key");
         fileChooser.addChoosableFileFilter(fileFilter);
         fileChooser.setAcceptAllFileFilterUsed(false);
 
+        // open the file chooser
         int saveReturn = fileChooser.showSaveDialog(null);
 
         if (saveReturn == JFileChooser.APPROVE_OPTION) {
@@ -43,6 +63,7 @@ public class SaveButtonListener implements ActionListener {
                 fullPath += ".key";
             }
 
+            // overwrite warning
             if (file.exists()) {
                 int confirmation = JOptionPane.showConfirmDialog(null,
                         "This file already exists. Do you want to overwrite it?",

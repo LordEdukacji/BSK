@@ -1,0 +1,105 @@
+\doxysection{pl.\+edu.\+pg.\+student.\+s193483.\+Signer Class Reference}
+\hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer}{}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer}\index{pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}}
+
+
+Signs PDF documents.  
+
+
+Inheritance diagram for pl.\+edu.\+pg.\+student.\+s193483.\+Signer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a75bd0d11859fa30992b0bb386ccbd7f6}{Signer}} (\mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder}{Usb\+Holder}} \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_ac544e70f343117fc68810f2bfa5b8da4}{usb\+Holder}})
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_abcfac9f0978098b52510b6179477a5a8}{set\+Password}} (String \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a1748cbfd9f09ed0d43adda7224785747}{password}})
+\begin{DoxyCompactList}\small\item\em Set the password used to encrypt the private key. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a271272b485c29a0563a386a4ad0092d9}{sign\+PDF}} ()  throws Exception 
+\begin{DoxyCompactList}\small\item\em Decrypts the private key, chooses a location and signs the PDF file with a dummy certificate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_ac544e70f343117fc68810f2bfa5b8da4}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_ac544e70f343117fc68810f2bfa5b8da4} 
+final \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder}{Usb\+Holder}} {\bfseries usb\+Holder}
+\begin{DoxyCompactList}\small\item\em Object handling the USB drive with the private key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_pdf_handler}{pl.\+edu.\+pg.\+student.\+s193483.\+Pdf\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+File {\bfseries pdf\+File} = null
+\begin{DoxyCompactList}\small\item\em The PDF file to work with. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a1748cbfd9f09ed0d43adda7224785747}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a1748cbfd9f09ed0d43adda7224785747} 
+String {\bfseries password}
+\begin{DoxyCompactList}\small\item\em Password used to encrypt the private key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signs PDF documents. 
+
+\label{doc-constructors}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a75bd0d11859fa30992b0bb386ccbd7f6}\index{pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}!Signer@{Signer}}
+\index{Signer@{Signer}!pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}}
+\doxysubsubsection{\texorpdfstring{Signer()}{Signer()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a75bd0d11859fa30992b0bb386ccbd7f6} 
+pl.\+edu.\+pg.\+student.\+s193483.\+Signer.\+Signer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder}{Usb\+Holder}}}]{usb\+Holder}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usb\+Holder} & Object handling the USB drive \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_abcfac9f0978098b52510b6179477a5a8}\index{pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}!setPassword@{setPassword}}
+\index{setPassword@{setPassword}!pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}}
+\doxysubsubsection{\texorpdfstring{setPassword()}{setPassword()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_abcfac9f0978098b52510b6179477a5a8} 
+void pl.\+edu.\+pg.\+student.\+s193483.\+Signer.\+set\+Password (\begin{DoxyParamCaption}\item[{String}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Set the password used to encrypt the private key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em password} & Password used to encrypt the private key \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a271272b485c29a0563a386a4ad0092d9}\index{pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}!signPDF@{signPDF}}
+\index{signPDF@{signPDF}!pl.edu.pg.student.s193483.Signer@{pl.edu.pg.student.s193483.Signer}}
+\doxysubsubsection{\texorpdfstring{signPDF()}{signPDF()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_signer_a271272b485c29a0563a386a4ad0092d9} 
+String pl.\+edu.\+pg.\+student.\+s193483.\+Signer.\+sign\+PDF (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) throws Exception}
+
+
+
+Decrypts the private key, chooses a location and signs the PDF file with a dummy certificate. 
+
+\begin{DoxyReturn}{Returns}
+Name of the signed file 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/pl/edu/pg/student/s193483/Signer.\+java\end{DoxyCompactItemize}

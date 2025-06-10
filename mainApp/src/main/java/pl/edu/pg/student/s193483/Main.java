@@ -5,6 +5,11 @@ import pl.edu.pg.student.s193483.ActionListeners.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @class Main
+ * @brief Main class
+ * @details Handles the UI and initialization of functional elements
+ */
 public class Main {
     public static void main(String[] args) {
         // frame
@@ -38,22 +43,22 @@ public class Main {
         JButton goToSignButton = new JButton("Sign a PDF");
         JButton goToVerifyButton = new JButton("Verify a signature");
 
+        // buttons
         JButton choosePublicButton = new JButton("Choose file with public key");
         JButton choosePDFButton = new JButton("Choose PDF file");
         JButton choosePDFButton2 = new JButton("Choose PDF file");
         JButton returnButton = new JButton("Return");
         JButton returnButton2 = new JButton("Return");
-
         JButton signButton = new JButton("Sign");
         JButton verifyButton = new JButton("Verify");
         JButton enterPasswordButton = new JButton("Enter");
 
+        // password
         JLabel passwordLabel = new JLabel("Enter password:");
         JPasswordField passwordField = new JPasswordField(20);
 
         // USB handling
         UsbHolder usbHolder = new UsbHolder(usbStatus, status);
-
         UsbDetector usbDetector = new UsbDetector(usbHolder);
         Thread usbThread = new Thread(usbDetector);
         usbThread.start();

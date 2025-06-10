@@ -1,0 +1,87 @@
+\doxysection{pl.\+edu.\+pg.\+student.\+s193483.\+Generator Class Reference}
+\hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator}{}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator}\index{pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}}
+
+
+Generates the RSA key pair.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_aa6e221db6728c9bd769c8bba584eb6a0}{get\+Public\+Key\+Bytes}} ()
+\begin{DoxyCompactList}\small\item\em Provides the byte representation of the public key. \end{DoxyCompactList}\item 
+byte\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a4e7ae9bd0a649c64daeb3b4a56c00a3d}{get\+Private\+Key\+Bytes}} ()
+\begin{DoxyCompactList}\small\item\em Provides the byte representation of the IV, salt and private key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_aec8b440a3574001a6f19a9c4ddf5f896}{generate\+Keys}} (String pin)  throws No\+Such\+Algorithm\+Exception, No\+Such\+Padding\+Exception, Invalid\+Algorithm\+Parameter\+Exception, Invalid\+Key\+Exception, Illegal\+Block\+Size\+Exception, Bad\+Padding\+Exception, Invalid\+Key\+Spec\+Exception 
+\begin{DoxyCompactList}\small\item\em Generates a pair of keys and saves them in the class fields. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a00f3d98425fd9e5720b454bfbc774152}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a00f3d98425fd9e5720b454bfbc774152} 
+Public\+Key {\bfseries public\+Key}
+\begin{DoxyCompactList}\small\item\em The generated public key. \end{DoxyCompactList}\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a290e3c24cf6136eefaa965ba562d9c21}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a290e3c24cf6136eefaa965ba562d9c21} 
+byte\mbox{[}$\,$\mbox{]} {\bfseries iv}
+\begin{DoxyCompactList}\small\item\em The initialization vector used for encrypting the private key. \end{DoxyCompactList}\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a48a34f46cedec257f097d448d552477c}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a48a34f46cedec257f097d448d552477c} 
+byte\mbox{[}$\,$\mbox{]} {\bfseries salt}
+\begin{DoxyCompactList}\small\item\em The salt used for encrypting the private key. \end{DoxyCompactList}\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a915e37845a60239dc38ced4a3b33f6e0}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a915e37845a60239dc38ced4a3b33f6e0} 
+byte\mbox{[}$\,$\mbox{]} {\bfseries encrypted\+Private\+Key}
+\begin{DoxyCompactList}\small\item\em The encrypted private key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates the RSA key pair. 
+
+The public key is available directly in its byte form, while the private key is secured using a PIN provided during the generation process. 
+
+\label{doc-func-members}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_aec8b440a3574001a6f19a9c4ddf5f896}\index{pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}!generateKeys@{generateKeys}}
+\index{generateKeys@{generateKeys}!pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}}
+\doxysubsubsection{\texorpdfstring{generateKeys()}{generateKeys()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_aec8b440a3574001a6f19a9c4ddf5f896} 
+void pl.\+edu.\+pg.\+student.\+s193483.\+Generator.\+generate\+Keys (\begin{DoxyParamCaption}\item[{String}]{pin}{}\end{DoxyParamCaption}) throws No\+Such\+Algorithm\+Exception, No\+Such\+Padding\+Exception, Invalid\+Algorithm\+Parameter\+Exception, Invalid\+Key\+Exception, Illegal\+Block\+Size\+Exception, Bad\+Padding\+Exception, Invalid\+Key\+Spec\+Exception}
+
+
+
+Generates a pair of keys and saves them in the class fields. 
+
+Uses the RSA algorithm with a keysize of 4096. The PIN is hashed with SHA256 and the private key encrypted with AES. 
+\begin{DoxyParams}{Parameters}
+{\em pin} & PIN used for securing the private key. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a4e7ae9bd0a649c64daeb3b4a56c00a3d}\index{pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}!getPrivateKeyBytes@{getPrivateKeyBytes}}
+\index{getPrivateKeyBytes@{getPrivateKeyBytes}!pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}}
+\doxysubsubsection{\texorpdfstring{getPrivateKeyBytes()}{getPrivateKeyBytes()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_a4e7ae9bd0a649c64daeb3b4a56c00a3d} 
+byte\mbox{[}$\,$\mbox{]} pl.\+edu.\+pg.\+student.\+s193483.\+Generator.\+get\+Private\+Key\+Bytes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Provides the byte representation of the IV, salt and private key. 
+
+\begin{DoxyReturn}{Returns}
+Byte array of the IV, salt and private key. 
+\end{DoxyReturn}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_aa6e221db6728c9bd769c8bba584eb6a0}\index{pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}!getPublicKeyBytes@{getPublicKeyBytes}}
+\index{getPublicKeyBytes@{getPublicKeyBytes}!pl.edu.pg.student.s193483.Generator@{pl.edu.pg.student.s193483.Generator}}
+\doxysubsubsection{\texorpdfstring{getPublicKeyBytes()}{getPublicKeyBytes()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_generator_aa6e221db6728c9bd769c8bba584eb6a0} 
+byte\mbox{[}$\,$\mbox{]} pl.\+edu.\+pg.\+student.\+s193483.\+Generator.\+get\+Public\+Key\+Bytes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Provides the byte representation of the public key. 
+
+\begin{DoxyReturn}{Returns}
+Byte array with the public key. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/pl/edu/pg/student/s193483/Generator.\+java\end{DoxyCompactItemize}

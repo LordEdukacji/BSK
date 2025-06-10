@@ -1,0 +1,95 @@
+\doxysection{pl.\+edu.\+pg.\+student.\+s193483.\+Usb\+Holder Class Reference}
+\hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder}{}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder}\index{pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a9a3cea2e628132fc4da20f109e995d75}{Usb\+Holder}} (JLabel \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a5f480bc503651d1db0e7bf3227386178}{usb\+Status}}, JLabel \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a60f13bf61d0dd1d19d13f77502c2ca3e}{status}})
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a4e77eace60f6874e4fb94f6a61426400}{update\+Roots}} (File\mbox{[}$\,$\mbox{]} new\+Roots)
+\begin{DoxyCompactList}\small\item\em Update the list of roots and determine the USB drive if the list changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a9cc8e036af52ae06820f66127460153e}{load\+Private\+Key\+Bytes}} ()
+\begin{DoxyCompactList}\small\item\em Find the file with the key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_aacde3f82211158da99c32066d418e446}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_aacde3f82211158da99c32066d418e446} 
+File {\bfseries usb} = null
+\begin{DoxyCompactList}\small\item\em The root determined to be the USB drive. \end{DoxyCompactList}\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a8c7cae8131f85c6e693530b71f67b2b2}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a8c7cae8131f85c6e693530b71f67b2b2} 
+byte\mbox{[}$\,$\mbox{]} {\bfseries private\+Key\+Bytes}
+\begin{DoxyCompactList}\small\item\em Bytes of the private key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a57ae76fbed477f0c25c3672d39944bbd}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a57ae76fbed477f0c25c3672d39944bbd} 
+File\mbox{[}$\,$\mbox{]} {\bfseries roots} = new File\mbox{[}0\mbox{]}
+\begin{DoxyCompactList}\small\item\em All found roots. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a5f480bc503651d1db0e7bf3227386178}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a5f480bc503651d1db0e7bf3227386178} 
+final JLabel {\bfseries usb\+Status}
+\begin{DoxyCompactList}\small\item\em Reference to the USB status bar to provide USb information. \end{DoxyCompactList}\item 
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a60f13bf61d0dd1d19d13f77502c2ca3e}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a60f13bf61d0dd1d19d13f77502c2ca3e} 
+final JLabel {\bfseries status}
+\begin{DoxyCompactList}\small\item\em Reference to the status bar to provide general information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+the USB drive and finding the key file 
+
+\label{doc-constructors}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a9a3cea2e628132fc4da20f109e995d75}\index{pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}!UsbHolder@{UsbHolder}}
+\index{UsbHolder@{UsbHolder}!pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}}
+\doxysubsubsection{\texorpdfstring{UsbHolder()}{UsbHolder()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a9a3cea2e628132fc4da20f109e995d75} 
+pl.\+edu.\+pg.\+student.\+s193483.\+Usb\+Holder.\+Usb\+Holder (\begin{DoxyParamCaption}\item[{JLabel}]{usb\+Status}{, }\item[{JLabel}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usb\+Status} & USB status bar \\
+\hline
+{\em status} & General status bar \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a9cc8e036af52ae06820f66127460153e}\index{pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}!loadPrivateKeyBytes@{loadPrivateKeyBytes}}
+\index{loadPrivateKeyBytes@{loadPrivateKeyBytes}!pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}}
+\doxysubsubsection{\texorpdfstring{loadPrivateKeyBytes()}{loadPrivateKeyBytes()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a9cc8e036af52ae06820f66127460153e} 
+void pl.\+edu.\+pg.\+student.\+s193483.\+Usb\+Holder.\+load\+Private\+Key\+Bytes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Find the file with the key. 
+
+Only searches one level deep, can\textquotesingle{}t look into folders. There should only be one .key file on the drive for this to work. \Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a4e77eace60f6874e4fb94f6a61426400}\index{pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}!updateRoots@{updateRoots}}
+\index{updateRoots@{updateRoots}!pl.edu.pg.student.s193483.UsbHolder@{pl.edu.pg.student.s193483.UsbHolder}}
+\doxysubsubsection{\texorpdfstring{updateRoots()}{updateRoots()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_usb_holder_a4e77eace60f6874e4fb94f6a61426400} 
+void pl.\+edu.\+pg.\+student.\+s193483.\+Usb\+Holder.\+update\+Roots (\begin{DoxyParamCaption}\item[{File\mbox{[}$\,$\mbox{]}}]{new\+Roots}{}\end{DoxyParamCaption})}
+
+
+
+Update the list of roots and determine the USB drive if the list changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Roots} & List of all roots provided by the detector \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/pl/edu/pg/student/s193483/Usb\+Holder.\+java\end{DoxyCompactItemize}

@@ -14,10 +14,10 @@ import java.security.spec.InvalidKeySpecException;
  * @details The public key is available directly in its byte form, while the private key is secured using a PIN provided during the generation process.
  */
 public class Generator {
-    private PublicKey publicKey;        /** The generated public key */
-    private byte[] iv;                  /** The initialization vector used for encrypting the private key*/
-    private byte[] salt;                /** The salt used for encrypting the private key */
-    private byte[] encryptedPrivateKey; /** The encrypted private key*/
+    private PublicKey publicKey;        //!< The generated public key
+    private byte[] iv;                  //!< The initialization vector used for encrypting the private key
+    private byte[] salt;                //!< The salt used for encrypting the private key
+    private byte[] encryptedPrivateKey; //!< The encrypted private key
 
     /**
      * @brief Provides the byte representation of the public key.
@@ -43,7 +43,8 @@ public class Generator {
     }
 
     /**
-     * @brief Generates a pair of keys and saves them in 
+     * @brief Generates a pair of keys and saves them in the class fields
+     * @details Uses the RSA algorithm with a keysize of 4096. The PIN is hashed with SHA256 and the private key encrypted with AES.
      * @param pin PIN used for securing the private key.
      */
     public void generateKeys(String pin) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidKeySpecException {

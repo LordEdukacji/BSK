@@ -1,0 +1,123 @@
+\doxysection{pl.\+edu.\+pg.\+student.\+s193483.\+Key\+Extractor Class Reference}
+\hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor}{}\label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor}\index{pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}}
+
+
+Converts the keys in their byte form into appropriate objects.  
+
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Public\+Key \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a8e38a551aa83f0f5908f31ebca741293}{extract\+Public\+Key}} (byte\mbox{[}$\,$\mbox{]} bytes)  throws No\+Such\+Algorithm\+Exception, Invalid\+Key\+Spec\+Exception 
+\begin{DoxyCompactList}\small\item\em Extract the RSA public key from the byte array. \end{DoxyCompactList}\item 
+static Private\+Key \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a77d8781c93e3ea666000944361b82178}{extract\+Private\+Key}} (byte\mbox{[}$\,$\mbox{]} bytes, String password)  throws No\+Such\+Algorithm\+Exception, Invalid\+Key\+Spec\+Exception, No\+Such\+Padding\+Exception, Invalid\+Algorithm\+Parameter\+Exception, Invalid\+Key\+Exception, Illegal\+Block\+Size\+Exception, Bad\+Padding\+Exception 
+\begin{DoxyCompactList}\small\item\em Extract the encrypted RSA private key using a password. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Secret\+Key \mbox{\hyperlink{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a888bdbaf69cef6689fabf4d627860965}{hash\+Password}} (String password, byte\mbox{[}$\,$\mbox{]} salt)  throws No\+Such\+Algorithm\+Exception, Invalid\+Key\+Spec\+Exception 
+\begin{DoxyCompactList}\small\item\em Hash the PIN to obtain the password used in the encryption process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Converts the keys in their byte form into appropriate objects. 
+
+Functions are exposed as static. Returns Private\+Key or Public\+Key objects from java.\+security. 
+
+\label{doc-func-members}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a77d8781c93e3ea666000944361b82178}\index{pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}!extractPrivateKey@{extractPrivateKey}}
+\index{extractPrivateKey@{extractPrivateKey}!pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}}
+\doxysubsubsection{\texorpdfstring{extractPrivateKey()}{extractPrivateKey()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a77d8781c93e3ea666000944361b82178} 
+Private\+Key pl.\+edu.\+pg.\+student.\+s193483.\+Key\+Extractor.\+extract\+Private\+Key (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{bytes}{, }\item[{String}]{password}{}\end{DoxyParamCaption}) throws No\+Such\+Algorithm\+Exception, Invalid\+Key\+Spec\+Exception, No\+Such\+Padding\+Exception, Invalid\+Algorithm\+Parameter\+Exception, Invalid\+Key\+Exception, Illegal\+Block\+Size\+Exception, Bad\+Padding\+Exception\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract the encrypted RSA private key using a password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & Private key bytes \\
+\hline
+{\em password} & PIN used to encrypt the private key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em No\+Such\+Algorithm\+Exception} & \\
+\hline
+{\em Invalid\+Key\+Spec\+Exception} & \\
+\hline
+{\em No\+Such\+Padding\+Exception} & \\
+\hline
+{\em Invalid\+Algorithm\+Parameter\+Exception} & \\
+\hline
+{\em Invalid\+Key\+Exception} & \\
+\hline
+{\em Illegal\+Block\+Size\+Exception} & \\
+\hline
+{\em Bad\+Padding\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a8e38a551aa83f0f5908f31ebca741293}\index{pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}!extractPublicKey@{extractPublicKey}}
+\index{extractPublicKey@{extractPublicKey}!pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}}
+\doxysubsubsection{\texorpdfstring{extractPublicKey()}{extractPublicKey()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a8e38a551aa83f0f5908f31ebca741293} 
+Public\+Key pl.\+edu.\+pg.\+student.\+s193483.\+Key\+Extractor.\+extract\+Public\+Key (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{bytes}{}\end{DoxyParamCaption}) throws No\+Such\+Algorithm\+Exception, Invalid\+Key\+Spec\+Exception\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract the RSA public key from the byte array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & Public key bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Public key object 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em No\+Such\+Algorithm\+Exception} & \\
+\hline
+{\em Invalid\+Key\+Spec\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a888bdbaf69cef6689fabf4d627860965}\index{pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}!hashPassword@{hashPassword}}
+\index{hashPassword@{hashPassword}!pl.edu.pg.student.s193483.KeyExtractor@{pl.edu.pg.student.s193483.KeyExtractor}}
+\doxysubsubsection{\texorpdfstring{hashPassword()}{hashPassword()}}
+{\footnotesize\ttfamily \label{classpl_1_1edu_1_1pg_1_1student_1_1s193483_1_1_key_extractor_a888bdbaf69cef6689fabf4d627860965} 
+Secret\+Key pl.\+edu.\+pg.\+student.\+s193483.\+Key\+Extractor.\+hash\+Password (\begin{DoxyParamCaption}\item[{String}]{password}{, }\item[{byte\mbox{[}$\,$\mbox{]}}]{salt}{}\end{DoxyParamCaption}) throws No\+Such\+Algorithm\+Exception, Invalid\+Key\+Spec\+Exception\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Hash the PIN to obtain the password used in the encryption process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em password} & The PIN used to encrypt the password \\
+\hline
+{\em salt} & The salt used during the encryption process, to be read from the file in which the encrypted key is saved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Secret key for decrypting the private key 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em No\+Such\+Algorithm\+Exception} & \\
+\hline
+{\em Invalid\+Key\+Spec\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/pl/edu/pg/student/s193483/Key\+Extractor.\+java\end{DoxyCompactItemize}
