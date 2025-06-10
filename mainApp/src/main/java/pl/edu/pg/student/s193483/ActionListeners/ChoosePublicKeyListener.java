@@ -1,6 +1,7 @@
 package pl.edu.pg.student.s193483.ActionListeners;
 
 import pl.edu.pg.student.s193483.KeyExtractor;
+import pl.edu.pg.student.s193483.Verifier;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -15,6 +16,12 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 
 public class ChoosePublicKeyListener implements ActionListener {
+    private final Verifier verifier;
+
+    public ChoosePublicKeyListener(Verifier verifier) {
+        this.verifier = verifier;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
@@ -32,6 +39,7 @@ public class ChoosePublicKeyListener implements ActionListener {
                 byte[] bytes = fileInputStream.readAllBytes();
                 PublicKey publicKey = KeyExtractor.extractPublicKey(bytes);
 
+                verifier.publicKey = publicKey;
                 System.out.println(publicKey);
             } catch (FileNotFoundException ex) {
                 throw new RuntimeException(ex);

@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VerifyListener implements ActionListener {
+public class GoToVerifyListener implements ActionListener {
     private CardLayout cardLayout;
     private JPanel cards;
 
-    public VerifyListener(CardLayout cardLayout, JPanel cards) {
+    public GoToVerifyListener(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
     }

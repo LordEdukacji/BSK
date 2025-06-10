@@ -1,4 +1,7 @@
 package pl.edu.pg.student.s193483;
 
-public interface PdfHandler {
+import java.io.File;
+
+public class PdfHandler {
+    public File pdfFile = null;
 }

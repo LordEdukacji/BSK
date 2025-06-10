@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SignListener implements ActionListener {
+public class GoToSignListener implements ActionListener {
     private CardLayout cardLayout;
     private JPanel cards;
 
-    public SignListener(CardLayout cardLayout, JPanel cards) {
+    public GoToSignListener(CardLayout cardLayout, JPanel cards) {
         this.cardLayout = cardLayout;
         this.cards = cards;
     }
